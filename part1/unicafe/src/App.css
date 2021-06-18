@@ -1,0 +1,12 @@
+.App {
+    text-align: center;
+}
+
+table {
+    text-align: left;
+    margin: 0 auto;
+}
+td:nth-child(1) {
+    padding-right: 30px;
+    font-weight: 600;
+}

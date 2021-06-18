@@ -1,6 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+const data = {
+    course: 'Half Stack application development',
+    exercises: [
+        {
+            part: 'Fundamentals of React',
+            exercises: 10,
+        },
+        {
+            part: 'Using props to pass data',
+            exercises: 7,
+        },
+        {
+            part: 'State of a component',
+            exercises: 14,
+        },
+    ],
+};
+
 //////////// Header
 
 const Header = ({ title }) => (
@@ -40,28 +58,11 @@ const Total = ({ exercises }) => {
 ////
 
 const App = () => {
-    const course = 'Half Stack application development';
-
-    const exercises = [
-        {
-            part: 'Fundamentals of React',
-            exercises: 10,
-        },
-        {
-            part: 'Using props to pass data',
-            exercises: 7,
-        },
-        {
-            part: 'State of a component',
-            exercises: 14,
-        },
-    ];
-
     return (
         <div>
-            <Header title={course} />
-            <Content exercises={exercises} />
-            <Total exercises={exercises} />
+            <Header title={data.course} />
+            <Content exercises={data.exercises} />
+            <Total exercises={data.exercises} />
         </div>
     );
 };
