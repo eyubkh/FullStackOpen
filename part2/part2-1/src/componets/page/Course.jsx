@@ -1,19 +1,19 @@
-import { Header } from '../organism/Header';
-import { Content } from '../organism/Content';
+
+import { Content } from '../organism/Content'
 import { courseData } from '../../services/data'
 export function Course() {
+
+    function content(item) {
+        return(
+            <div key={item.id}>
+                <Content content={item.parts} title={item.name}/>  
+            </div>
+        )
+    }
+
     return(
-        <>{
-            courseData.map( item => {
-                return(
-                    <div key={item.id}>
-                        <Header title={item.name} />
-                        <Content content={item.parts} />  
-                    </div>
-                )
-            })
-        }
-        
+        <>
+            {courseData.map(content)}
         </>
-    );
+    )
 }
