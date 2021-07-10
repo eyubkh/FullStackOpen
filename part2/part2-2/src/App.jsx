@@ -1,49 +1,66 @@
-import React, {useState} from 'react'
-import { DATA } from './server/data'
+import React, { useState , useEffect } from 'react'
+import axios from 'axios'
 import './App.css'
-import Main from './components/organisms/Main'
 
-const INFO_STATE = {
-    name: '',
-    tlf: ''
-  }
-
+function Country({name,languages,capital,population,img}){
+    return(
+      <div>
+          <h2>{name}</h2>
+          <p>Capital {capital}</p>
+          <p>Population {population}</p>
+          <h2>Languages</h2>
+          {languages.map(item => <p key={item.name}>{item.name}</p>)}
+          <img src={img}  alt="" />
+      </div>
+    )
+}
 
 function App() {
-  const [persons = {} , setPersons] = useState(DATA)
-  const [ info = {} ,setInfo ] = useState(INFO_STATE)
-  const [search, setSearch] = useState('')
-  
-  
 
-  function addContact(event){
-    event.preventDefault()
-    const a = persons.filter( (item = {name: ''})  => item.name === info.name)
-    console.log(a)
-    if(a.length === 0){
-      let obj = {
-        id: persons.length + 1,
-        name: info.name,
-        tlf: info.tlf
-      }
-      setPersons(persons.concat(obj))
-      setInfo({name: '', tlf: ''})
-      alert(`Contact ${info.name} added`)
-    } else{
-      alert('Name duplicated')
-    }
+  const [notes , setNotes] = useState([])
+  const [change,setChange] = useState('')
+
+  useEffect(() => {
+    axios
+      .get('https://restcountries.eu/rest/v2/all')
+      .then(res => {
+        setNotes(res.data)
+      })
+      .catch(err => {
+        console.log('Error connecting to data server', {err})
+      })
+  },[])
+
+  function handleChange(event){
+      setChange(event.target.value)
   }
 
-  
-  function handleChangeSearch(event){
-    setSearch(event.target.value)
-  }
+  const filter = notes.filter(item => {
+        let find = RegExp(change,'ig')
+        let result = find.test(item.name)
+        return result
+      })
 
-  
   return (
-    <div className="content" >
-          <Main setInfo={setInfo} info={info} addContact={addContact} search={search} data={persons} handleChangeSearch={handleChangeSearch} />
-      </div>
+    <div className="App">
+      <h1>Hello</h1>
+      <label htmlFor="find">Find countries: </label>
+      <input type="text" id="find"  onChange={handleChange} />
+
+      {
+        filter.length > 10
+        ? <p>Too many matche, specify another filter</p>
+        : filter.map(item => (
+            <Country 
+              key={item.name} 
+              name={item.name} 
+              capital={item.capital}
+              population={item.population}
+              languages={item.languages}
+              img={item.flag}
+          />))
+      }
+    </div>
   )
 }
 
