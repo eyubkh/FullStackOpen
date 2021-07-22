@@ -5,3 +5,13 @@
 img{
   width: 300px;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.weather{
+  width: 50px
+}

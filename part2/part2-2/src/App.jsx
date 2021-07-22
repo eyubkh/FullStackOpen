@@ -1,35 +1,22 @@
 import React, { useState , useEffect } from 'react'
-import axios from 'axios'
+import { Connection } from './axios/index'
 import './App.css'
-
-function Country({name,languages,capital,population,img}){
-    return(
-      <div>
-          <h2>{name}</h2>
-          <p>Capital {capital}</p>
-          <p>Population {population}</p>
-          <h2>Languages</h2>
-          {languages.map(item => <p key={item.name}>{item.name}</p>)}
-          <img src={img}  alt="" />
-      </div>
-    )
-}
+import Country from './Country'
 
 function App() {
 
   const [notes , setNotes] = useState([])
   const [change,setChange] = useState('')
+  
 
   useEffect(() => {
-    axios
-      .get('https://restcountries.eu/rest/v2/all')
-      .then(res => {
-        setNotes(res.data)
-      })
-      .catch(err => {
-        console.log('Error connecting to data server', {err})
-      })
+    Connection('https://restcountries.eu/rest/v2/all')
+    .then(result => {
+      setNotes(result)
+    })
   },[])
+
+  
 
   function handleChange(event){
       setChange(event.target.value)
@@ -48,7 +35,7 @@ function App() {
       <input type="text" id="find"  onChange={handleChange} />
 
       {
-        filter.length > 10
+        filter.length > 1
         ? <p>Too many matche, specify another filter</p>
         : filter.map(item => (
             <Country 
