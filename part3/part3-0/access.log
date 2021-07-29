@@ -1,0 +1,5 @@
+GET /api/persons 200 94 - 2.992 ms {}
+POST /api/persons 200 42 - 0.743 ms {"name":"isaac","number":123456789,"id":3}
+POST /api/persons 400 42 - 0.783 ms {"name":"isaac","number":123456789,"id":4}
+GET / 304 - - 4.878 ms {}
+GET /api/persons 200 94 - 0.748 ms {}
