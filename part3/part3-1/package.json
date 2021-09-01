@@ -2,8 +2,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "db": "json-server -p3001 --watch db.json "
+    "build": "vite build"
   },
   "dependencies": {
     "react": "^17.0.0",
