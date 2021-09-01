@@ -1,4 +1,4 @@
-const url = 'http://127.0.0.1:3001/api/persons/'
+const url = 'https://warm-bastion-30668.herokuapp.com/api/persons/'
 
 export const getAll = () => {
     return fetch(url).then(result => result.json())
@@ -25,7 +25,7 @@ export const removeUser = (id) => {
 } 
 
 export const updateUser = (obj,id) => {
-    fetch(`${url}/${id}` ,{
+    fetch(`${url}${id}` ,{
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
