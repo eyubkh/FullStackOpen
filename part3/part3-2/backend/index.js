@@ -10,37 +10,78 @@ app.use(express.json())
 
 const PORT = 3001
 
-let DATA_CONTACT = [
-    {
-        id: 0,
-        name: "ayoub",
-        phone: 612402147
-    }
-]
+const url = process.env.DB_MONGO
 
+mongoose.connect(url , {useNewUrlParser: true})
+
+const newContact = mongoose.Schema({
+    name: String,
+    phone: Number
+})
+
+const Contact = mongoose.model("Contact", newContact)
 
 app.get('/api/contacts/',(req,res) => {
-    res.json(DATA_CONTACT)
+    Contact.find({})
+        .then(result => {
+            res.json(result)
+        })
 })
 
 app.get('/api/contacts/:id', (req,res) => {
     const { id } = req.params
-    const contact = DATA_CONTACT.find( item => item.id === Number(id))
-    contact.length === 0 ? res.status(404).end('Contact not found') : res.json(contact)
+    Contact.findById(id)
+        .then(result => {
+                console.log('id finded')
+                res.json(result).end()
+
+        })
+        .catch( err => {
+            console.log('Error')
+            res.status(404).end()
+        })
 })
 
 app.delete('/api/contacts/:id', (req,res) => {
     const { id } = req.params
-    DATA_CONTACT = DATA_CONTACT.filter( item => item.id !== Number(id))
-    res.status(204).end("Contact deleted")
+   Contact.deleteOne({ "_id": id})
+        .then(result => {
+            if(result.deletedCount === 0) next()
+            console.log('Deleted contact :)')
+            res.status(200).end("Contact deleted")
+        })
+        .catch( err => {
+            console.log('oh error to delet :/')
+            res.status(404).end()
+        })
+    
 })
 
 app.post('/api/contacts', (req,res) => {
     const contact = req.body
-    const id = DATA_CONTACT.length > 0 ? Math.max(...DATA_CONTACT.map(index => index.id)) : 0
-    contact.id = id + 1
-    DATA_CONTACT = DATA_CONTACT.concat(contact)
-    res.json(contact)
+    const createContact = new Contact(contact)
+    createContact.save()
+        .then(result => {
+            console.log("contact added")
+            res.json(result)
+        })
+        .catch(err => {
+            console.log('oh error to post')
+            res.status(406).end()
+        })
+})
+
+app.put('/api/contacts/:id', (req,res) => {
+    const { _id, phone } = req.body
+    Contact.updateOne({ "_id": _id},{ "phone": phone})
+        .then(result => {
+            console.log('Contact update :)')
+            res.status(200).end()
+        })
+        .catch( err => {
+            console.log("oh error to update :/")
+            res.status(404).end()
+        })
 })
 
 app.listen(PORT, () => {

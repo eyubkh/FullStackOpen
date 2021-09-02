@@ -25,3 +25,13 @@ export const deletOne = (id) => {
     })
     
 }
+
+export const updateOne = (_id , data) => {
+    return fetch(`${URL}${_id}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': "application/json"
+        },
+        body: JSON.stringify({...data, _id})
+    })
+}
