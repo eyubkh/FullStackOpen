@@ -7,12 +7,12 @@ const loggerRequest = (request, response, next) => {
 
 const errorHandler = (error, request, response, next) => {
   logger.error(error, 'Error :/')
-  response.status(200).end()
+  response.status(500).end()
 }
 
 const unknowEndpoint = (request, response) => {
   logger.error('Unknow Endpoint :/')
-  response.status(200).send('ha')
+  response.status(404).end()
 }
 
 module.exports = {

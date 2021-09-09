@@ -1,10 +1,11 @@
 const config = require('./utils/config')
 const express = require('express')
 const app = express()
-const logger = require('./utils/logger')
+const cors = require('cors')
 const blogsRouter = require('./controllers/blogs')
-const mongoose = require('mongoose')
 const middleware = require('./utils/middleware')
+const logger = require('./utils/logger')
+const mongoose = require('mongoose')
 
 mongoose.connect(config.MONGODB_URL)
   .then(() => {
@@ -14,6 +15,8 @@ mongoose.connect(config.MONGODB_URL)
     logger.error('MongoDB Connection error')
   })
 
+app.use(cors())
+app.use(express.json())
 app.use(middleware.loggerRequest)
 
 app.use('/api/blogs', blogsRouter)
