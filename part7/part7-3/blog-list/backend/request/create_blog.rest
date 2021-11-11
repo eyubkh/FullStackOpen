@@ -1,0 +1,21 @@
+POST http://localhost:3001/api/blogs/
+Content-Type: application/json
+
+{
+  "title": "How to rent a home",
+  "author": "ayub kh",
+  "url": "http://www.ayub.com",
+  "userId": "61486fae2052f1e22795d528"
+}
+
+### by token
+
+POST http://localhost:3001/api/blogs/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImF5dWIiLCJpZCI6IjYxNGRhMjc0OGVmODEyMWYzYmExMjc4MiIsImlhdCI6MTYzMjQ3NzgyN30.gW_2kVKBk4db4maira1UovGoDK-I_DZF7tttPqL5MMg
+
+{
+  "title": "Test 3",
+  "author": "Ayub Hadi",
+  "url": "http://www.ayub.com/token3"
+}

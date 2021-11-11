@@ -1,0 +1,15 @@
+body {
+   background-color: #eee;
+   display: flex;
+   height: 100vh;
+   justify-content: center;
+   align-items: center;
+   margin:  0;
+}
+
+h1 {
+  color: #333;
+  font-size: 3rem;
+  border: solid 4px black;
+  padding: 20px;
+}
