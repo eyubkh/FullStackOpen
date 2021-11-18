@@ -4,5 +4,5 @@ import Thunk from 'redux-thunk'
 // Reducer
 import { userReducer } from './reducers/userReducer'
 
-const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 export const store = createStore(userReducer, composeEnhancers(applyMiddleware(Thunk)))

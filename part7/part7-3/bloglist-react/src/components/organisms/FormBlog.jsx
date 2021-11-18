@@ -14,8 +14,8 @@ const FormStyle = styled.form`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  margin: 20px 0;
-  padding: 0;
+  padding: 40px 0px;
+  color: #5e6472;
 `
 
 export const FormBlog = () => {
@@ -34,8 +34,8 @@ export const FormBlog = () => {
     <Fragment>
       <FormStyle onSubmit={handlerCreate}>
         <Title text='Create Blog' />
-        <Input type='text' holder='Title' />
-        <Input type='text' holder='Url' />
+        <Input type='text' placeHolder='Title' />
+        <Input type='text' placeHolder='Url' />
         <Button text='create' />
       </FormStyle>
     </Fragment>

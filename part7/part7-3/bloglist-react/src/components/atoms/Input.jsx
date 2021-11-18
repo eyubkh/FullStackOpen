@@ -1,15 +1,28 @@
 import React from 'react'
-import styled from 'styled-components'
 
-const InputStyle = styled.input`
-  padding: 7px 0px;
-  padding-left: 10px;
-  margin: 10px 0px;
-  outline: none;
-  border-radius: 3px;
-  border: 2px solid orangered;
+// Styled
+import styled, { keyframes } from 'styled-components'
+// React Spring
+
+const boxShadow = keyframes`
+  100% {box-shadow: 0 4px #5e6472;}
 `
 
-export const Input = ({ type, holder }) => {
-  return <InputStyle type={type} placeholder={holder} />
+const InputStyle = styled.input`
+  color: #5e6472;
+  font-weight: 400;
+  padding: 10px 14px;
+  margin-top: 15px;
+  outline: none;
+  border-radius: 0px;
+  border: none;
+  box-shadow: 0 1px #5e6472;
+  &:focus {
+    animation: ${boxShadow} .3s forwards; 
+  }  
+`
+
+export const Input = ({ type, placeHolder }) => {
+  // const props = useSpring()
+  return <InputStyle type={type} placeholder={placeHolder} />
 }

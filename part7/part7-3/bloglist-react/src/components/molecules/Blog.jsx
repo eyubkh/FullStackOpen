@@ -1,17 +1,23 @@
 import React from 'react'
+// Style
+import styled from 'styled-components'
+// React Router
+import { Link } from 'react-router-dom'
 
-import { Title } from '../atoms/Title'
-import { SubTitle } from '../atoms/SubTitle'
-import { Toggle } from '../Toggle'
+const ArticleStyle = styled.article`
+  background-color: #ffa69e;
+  margin: 10px 0;
+  padding: 30px 0;
+  text-align: center;
+  width: 75%;
+`
 
-export const Blog = ({ url, author, title = 'unknow Ttitle' }) => {
+export const Blog = ({ id, title = 'unknow Title' }) => {
   return (
-    <article>
-      <Title text={title} />
-      <Toggle>
-       <SubTitle text={url} /><br></br>
-       <SubTitle text={author} />
-      </Toggle>
-    </article>
+    <ArticleStyle>
+      <Link to={`/blogs/${id}`} >
+      {title}
+      </Link>
+    </ArticleStyle>
   )
 }

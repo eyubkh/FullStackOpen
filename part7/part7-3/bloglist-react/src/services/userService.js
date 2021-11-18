@@ -40,3 +40,9 @@ export const getBlog = (id) => {
     .then(result => result.json())
     .then(data => data)
 }
+
+export const getAllUsers = async () => {
+  return await window.fetch('http://localhost:3001/api/users/')
+    .then(result => result.json())
+    .then(data => data)
+}

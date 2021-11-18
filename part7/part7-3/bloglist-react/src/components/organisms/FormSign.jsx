@@ -8,7 +8,7 @@ import { useSpring, animated } from 'react-spring'
 import { SignInForm } from '../molecules/SingInForm'
 import { SignUpForm } from '../molecules/SingUpForm'
 
-const FormSignStyle = styled(animated.form)`
+const FormSignStyle = styled(animated.div)`
   position: absolute;
   left: 0; 
   color: #5e6472;
@@ -28,10 +28,10 @@ const FormSignStyle = styled(animated.form)`
   }
 `
 
-export const FormSign = ({ animation: isAnimation, handlerSumbit }) => {
+export const FormSign = ({ animation: isAnimation }) => {
   const props = useSpring({ left: isAnimation ? '50vw' : '0vw' })
   return (
-    <FormSignStyle style={props} onSubmit={handlerSumbit}>
+    <FormSignStyle style={props}>
       {isAnimation ? <SignUpForm /> : <SignInForm />}
     </FormSignStyle>
   )

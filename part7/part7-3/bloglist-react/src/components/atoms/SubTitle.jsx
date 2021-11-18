@@ -1,4 +1,4 @@
 import React from 'react'
 export const SubTitle = ({ text }) => {
-  return <span>{text}</span>
+  return <h3>{text}</h3>
 }

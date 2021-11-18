@@ -1,27 +1,25 @@
-import React, { Fragment } from 'react'
-// Redux
+import React from 'react'
+// React Redux
 import { useDispatch } from 'react-redux'
 import { setUserAction } from '../../redux/actions/userAction'
+// Styled
+import styled from 'styled-components'
 // Components
 import { Button } from '../atoms/Button'
 import { Input } from '../atoms/Input'
 import { Title } from '../atoms/Title'
-// Styled
-import styled from 'styled-components'
+import { Span } from '../atoms/Span'
 
-const FormStyle = styled.form`
+const Form = styled.form`
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
 `
 
-export const Form = () => {
+export const SignInForm = () => {
   const dispatch = useDispatch()
-  const handlerLogin = async (event) => {
+  const handlerSignIn = (event) => {
     event.preventDefault()
     const object = {
       username: event.target[0].value,
@@ -32,13 +30,12 @@ export const Form = () => {
     event.target[1].value = ''
   }
   return (
-    <Fragment>
-      <FormStyle onSubmit={handlerLogin}>
-        <Title text='SignIn' />
-        <Input type='text' holder='User' />
-        <Input type='password' holder='Password' />
-        <Button text='send' />
-      </FormStyle>
-    </Fragment>
+    <Form onSubmit={handlerSignIn}>
+      <Title text='Sign in' />
+      <Input type='text' placeHolder='User' />
+      <Input type='password' placeHolder='Password' />
+      <Span text='Forgot your password?' margin={{ top: 0, bottom: 0 }} size={13}/>
+      <Button backgroundColor='#ffa69e' textColor='#fff' text='sign in' />
+    </Form>
   )
 }

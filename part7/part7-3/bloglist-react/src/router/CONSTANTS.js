@@ -1,3 +1,6 @@
 export const LOGINPAGE = '/login'
 export const HOME = '/'
 export const HOMEPAGE = '/userhome'
+export const USERPAGE = '/user'
+export const USER = '/user/:username'
+export const BLOG = '/blogs/:id'

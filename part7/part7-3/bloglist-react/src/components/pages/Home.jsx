@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react'
-
+// Components
 import { FormBlog } from '../organisms/FormBlog'
 import { Main } from '../organisms/Main'
-import { Logout } from '../atoms/Logout'
+import { Header } from '../organisms/Header'
 
 export const Home = () => {
   return (
     <Fragment>
-      <Logout />
+      <Header />
       <FormBlog />
       <Main />
     </Fragment>

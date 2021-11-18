@@ -6,8 +6,15 @@ import { logOut } from '../../redux/actions/userAction'
 // Styled Componetns
 import styled from 'styled-components'
 const ButtonLogout = styled.button`
-  padding: 5px 10px;
+  color: '#aed9e0';
+  padding: 10px 25px;
+  margin-top: 15px;
+  text-transform: uppercase;
+  border: 0px;
+  background-color: '#5e6472;';
+  border-radius: 3px;
   cursor: pointer;
+  font-weight: bold;
 `
 
 export const Logout = () => {
@@ -15,5 +22,5 @@ export const Logout = () => {
   const handleLogout = () => {
     dispatch(logOut())
   }
-  return <ButtonLogout onClick={handleLogout}>Log out</ButtonLogout>
+  return <ButtonLogout onClick={handleLogout}>Log Out</ButtonLogout>
 }
